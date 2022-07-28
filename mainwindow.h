@@ -25,26 +25,29 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     QWidget *centralwidget;
-    QMainWindow *mainWindow;
     QSpinBox *spinBox;
     QWidget *verticalLayoutWidget;
-    QVBoxLayout *verticalLayout2;
-    QLabel *label;
+    QVBoxLayout *verticalLayout;
+    QFont font;
     QDoubleSpinBox *doubleSpinBox;
-    QLabel *label2;
     QDoubleSpinBox *doubleSpinBox2;
     QPushButton *pushButton;
     QPushButton *pushButton2;
     QTableWidget *tableWidget;
-    QFormLayout *formLayout2;
+    QFormLayout *formLayout;
     QSlider *horizontalSlider;
     QSlider *horizontalSlider2;
     QSlider *horizontalSlider3;
+    QLabel *label;
+    QLabel *label2;
     QLabel *label3;
     QLabel *label4;
     QLabel *label5;
-    QMenuBar *menubar;
-    QStatusBar *statusbar;
+public slots:
+    void pushButtonClicked(int);
+signals:
+//    void
+
 };
 
 #endif // MAINWINDOW_H
