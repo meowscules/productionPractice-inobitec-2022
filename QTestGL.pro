@@ -1,5 +1,5 @@
-QT += gui widgets opengl
-
+QT += core gui opengl openglwidgets
+LIBS += -lopengl32 -lglu32
 CONFIG += c++11 console
 CONFIG -= app_bundle
 
@@ -9,7 +9,8 @@ CONFIG -= app_bundle
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+        myglwidget.cpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -17,4 +18,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    mainwindow.h
+    mainwindow.h \
+    myglwidget.h

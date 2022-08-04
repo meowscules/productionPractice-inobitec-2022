@@ -1,7 +1,6 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QMainWindow>
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QDoubleSpinBox>
@@ -17,37 +16,45 @@
 #include <QtWidgets/QTableWidget>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
+#include <myglwidget.h>
+#include "iostream"
 
-
-class MainWindow : public QMainWindow
+class MainWindow : public QWidget
 {
     Q_OBJECT
 public:
     explicit MainWindow(QWidget *parent = nullptr);
-    QWidget *centralwidget;
-    QSpinBox *spinBox;
-    QWidget *verticalLayoutWidget;
-    QVBoxLayout *verticalLayout;
-    QFont font;
-    QDoubleSpinBox *doubleSpinBox;
-    QDoubleSpinBox *doubleSpinBox2;
-    QPushButton *pushButton;
-    QPushButton *pushButton2;
-    QTableWidget *tableWidget;
-    QFormLayout *formLayout;
-    QSlider *horizontalSlider;
-    QSlider *horizontalSlider2;
-    QSlider *horizontalSlider3;
-    QLabel *label;
-    QLabel *label2;
-    QLabel *label3;
-    QLabel *label4;
-    QLabel *label5;
-public slots:
-    void pushButtonClicked(int);
-signals:
-//    void
 
+public slots:
+   void createButtonClicked();
+   void clearButtonClicked();
+private:
+    MyGLWidget *glWidget;
+
+    QVBoxLayout *m_rightLayout;
+    QWidget *centralwidget;
+    QHBoxLayout *m_mainLayout;
+    QVBoxLayout *m_leftLayout;
+    QSpinBox *m_spinBox;
+    QFont font;
+    QDoubleSpinBox *m_radiusDoubleSpinBox;
+    QDoubleSpinBox *m_lengthDoubleSpinBox;
+    QPushButton *m_createPushButton;
+    QPushButton *m_clearPushButton;
+    QTableWidget *m_tableWidget;
+    QFormLayout *m_formColorLayout;
+    QSlider *m_horizontalSliderColorRed;
+    QSlider *m_horizontalSliderColorGreen;
+    QSlider *m_horizontalSliderColorBlue;
+    QLabel *m_labelRadius;
+    QLabel *m_labelLength;
+    QLabel *m_labelColorRed;
+    QLabel *m_labelColorGreen;
+    QLabel *m_labelColorBlue;
+private:
+    float m_length, m_radius;
+    int m_numberShafts = 0;
+    QVector <float> myVector;
 };
 
 #endif // MAINWINDOW_H
