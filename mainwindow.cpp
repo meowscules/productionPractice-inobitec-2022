@@ -3,6 +3,7 @@
 
 MainWindow::MainWindow(QWidget *parent): QWidget(parent)
 {
+    resize(640, 480);
 
     m_mainLayout = new QHBoxLayout;
     m_leftLayout = new QVBoxLayout;
@@ -15,7 +16,7 @@ MainWindow::MainWindow(QWidget *parent): QWidget(parent)
     font.setPointSize(12);
 
     m_mainLayout->addLayout(m_leftLayout);
-    m_mainLayout->addWidget(glWidget);
+    m_mainLayout->addWidget(glWidget, 1);
 //    m_rightLayout->addWidget(glWidget);
 
     std::cout << glWidget->isEnabled() << std::endl;
@@ -63,8 +64,10 @@ MainWindow::MainWindow(QWidget *parent): QWidget(parent)
 
     m_tableWidget = new QTableWidget(this);
     m_leftLayout->addWidget(m_tableWidget);
+    m_tableWidget->setColumnCount(2);
+    m_tableWidget->setHorizontalHeaderLabels(QStringList() << "Радиус" << "Длина");
 
-    m_formColorLayout = new QFormLayout(this);
+    m_formColorLayout = new QFormLayout;
     m_leftLayout->addLayout(m_formColorLayout);
 
     m_horizontalSliderColorRed = new QSlider(this);
@@ -97,48 +100,22 @@ MainWindow::MainWindow(QWidget *parent): QWidget(parent)
 
 }
 
-int counter = 0;
-int row = 0;
+//int counter = 0;
+//int row = 0;
 
 void MainWindow::createButtonClicked(){    
+    double radius = m_radiusDoubleSpinBox->value();
+    double length = m_lengthDoubleSpinBox->value();
+    m_glWidget->AddShaftSegment(radius, length);
 
-
-//    m_numberShafts = m_spinBox->value();
-//    this->glWidget->num=m_numberShafts;
-//    m_spinBox->setValue(m_numberShafts + 1);
-
-//    m_radius = (m_radiusDoubleSpinBox->value());
-//    this->glWidget->rad=m_radius;
-
-//    m_length = (m_lengthDoubleSpinBox->value());
-//    this->glWidget->hi=m_length;
-
-//    myVector.push_back(m_radius);
-//    myVector.push_back(m_length);
-
-//    counter ++;
-
-//    this->glWidget->count=counter;
-
-//    if(counter==m_numberShafts)
-//    {
-//        this->glWidget->myVector=myVector;
-//    }
-
-//    m_tableWidget->setRowCount(m_numberShafts);
-//    m_tableWidget->setColumnCount(2);
-//    m_tableWidget->setHorizontalHeaderLabels(QStringList() << "Радиус" << "Длина");
-
-//    QString sy = QString::number(m_radius);
-//    QString x1s = QString::number(m_length);
-
-
-//    QTableWidgetItem *x2n = new QTableWidgetItem(sy);
-//    m_tableWidget->setItem(row, 0, x2n);
-//    QTableWidgetItem *x1n = new QTableWidgetItem(x1s);
-//    m_tableWidget->setItem(row, 1, x1n);
-//    row++;
-
+    int row = m_tableWidget->rowCount();
+    QString sy = QString::number(radius);
+    QString x1s = QString::number(length);
+    QTableWidgetItem *x2n = new QTableWidgetItem(sy);
+    m_tableWidget->setItem(row, 0, x2n);
+    QTableWidgetItem *x1n = new QTableWidgetItem(x1s);
+    m_tableWidget->setItem(row, 1, x1n);
+    m_tableWidget->setRowCount(row + 1);
 }
 
 void MainWindow::clearButtonClicked(){

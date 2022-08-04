@@ -37,6 +37,7 @@ protected:
     void resizeGL (int nWidth, int nHeight);
     void paintGL ();
     void wheelEvent(QWheelEvent *event);
+    QSize minimumSizeHint() const;
 
 };
 

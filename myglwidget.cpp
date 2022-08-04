@@ -37,7 +37,7 @@ void MyGLWidget::paintGL()
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 
-    if(GetKeyState('W')<0)speed =0.1;
+    if(GetKeyState('W')<0)speed =0.1; // TODO: remove WinAPI call (use keyPressEvent())
     if(GetKeyState('S')<0)speed =-0.1;
     if (GetKeyState('A')<0){speed =0.1; ugol -= M_PI*0.5;}
     if (GetKeyState('D')<0){speed =0.1; ugol += M_PI*0.5;}
@@ -70,7 +70,7 @@ void MyGLWidget::paintGL()
         }
     }
 
-    update();
+    update(); // TODO: remove later
 }
 
 void MyGLWidget::draw_cylinder(GLfloat radius, GLfloat height, GLfloat point, GLubyte R, GLubyte G, GLubyte B)
@@ -132,6 +132,11 @@ void MyGLWidget::wheelEvent(QWheelEvent *event)
         {
             zoom-=0.2;
         }
+}
+
+QSize MyGLWidget::minimumSizeHint() const
+{
+    return QSize(100, 100);
 }
 
 void MyGLWidget::mousePressEvent(QMouseEvent *e)
